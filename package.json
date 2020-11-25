@@ -40,7 +40,9 @@
     "release:alpha": "npm run release -- --prerelease alpha",
     "commit": "lint-staged && npx git-cz",
     "prepublishOnly": "run-s lint test build",
-    "install-peers": "npm-install-peers"
+    "install-peers": "npm-install-peers",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "lint-staged": {
     "**/*.less": "stylelint --fix --syntax less",
@@ -58,22 +60,35 @@
     "react": "^16.14.0",
     "react-dom": "^16.14.0"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "1.2.32",
+    "@fortawesome/free-solid-svg-icons": "5.15.1",
+    "@fortawesome/react-fontawesome": "0.1.13",
+    "classnames": "2.2.6",
+    "react-rnd": "10.2.3"
+  },
   "devDependencies": {
     "@babel/core": "7.11.6",
     "@babel/preset-env": "7.11.5",
     "@babel/preset-react": "7.10.4",
     "@babel/preset-typescript": "7.10.4",
+    "@storybook/addon-actions": "6.1.4",
+    "@storybook/addon-essentials": "6.1.4",
+    "@storybook/addon-links": "6.1.4",
+    "@storybook/react": "6.1.4",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
+    "@types/classnames": "2.2.11",
     "@types/jest": "26.0.14",
     "@types/react": "16.9.50",
     "@types/react-dom": "16.9.8",
+    "@types/react-rnd": "8.0.0",
     "@typescript-eslint/eslint-plugin": "4.0.1",
     "@typescript-eslint/parser": "4.0.1",
     "autoprefixer": "9.8.6",
     "babel-jest": "26.3.0",
+    "babel-loader": "8.2.1",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.7.0",
     "eslint-config-standard": "^14.1.0",
