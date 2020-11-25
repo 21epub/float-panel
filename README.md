@@ -6,7 +6,7 @@
 
 ## Intro
 
-This is a component for react. 
+This is a component for react.
 
 ## Feature
 
@@ -35,7 +35,6 @@ class Example extends Component {
 ```
 
 For Details: See Example
-
 
 ## Developing and running on localhost
 

@@ -12,5 +12,5 @@
     "jsx": "react",
     "allowSyntheticDefaultImports": true
   },
-  "include": ["./src/**/*", "./example/**/*"]
+  "include": ["./src/**/*"]
 }
