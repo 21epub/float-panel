@@ -27,6 +27,11 @@ Primary.args = {
   pos: { x: 0, y: 0, width: 320, height: 200 },
   style: {
     pointerEvents: 'initial'
+  },
+  titleHeight: 22,
+  title: 'Test',
+  titleBarStyle: {
+    height: 22
   }
 }
 

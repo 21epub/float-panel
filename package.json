@@ -4,7 +4,7 @@
   "description": "React Float panel",
   "author": "21epub",
   "license": "MIT",
-  "homepage": "https://github.com/21epub/float-panel",
+  "homepage": "https://21epub.github.io/float-panel",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/21epub/float-panel.git"
@@ -12,6 +12,7 @@
   "main": "dist/index.js",
   "module": "dist/index.modern.js",
   "source": "src/index.tsx",
+  "types": "dist/index.d.ts",
   "engines": {
     "node": ">=10"
   },
@@ -42,7 +43,8 @@
     "prepublishOnly": "run-s lint test build",
     "install-peers": "npm-install-peers",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "deploy-storybook": "storybook-to-ghpages"
   },
   "lint-staged": {
     "**/*.less": "stylelint --fix --syntax less",
@@ -76,6 +78,7 @@
     "@storybook/addon-essentials": "6.1.4",
     "@storybook/addon-links": "6.1.4",
     "@storybook/react": "6.1.4",
+    "@storybook/storybook-deployer": "2.8.7",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",

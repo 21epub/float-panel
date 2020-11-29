@@ -14,7 +14,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const isResizeH = (d: string) => d.match('bottom')
 const getHeight = (dom: HTMLElement) => dom.offsetHeight
-const titleHeight = 28
 
 interface Pos {
   x: number
@@ -36,6 +35,8 @@ export type CompProps = {
   enableClose?: boolean
   onClose?: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void
   className?: string
+  titleBarStyle?: React.CSSProperties
+  titleHeight?: number
 }
 export type Comp = React.FC<CompProps>
 
@@ -49,12 +50,21 @@ const FloatPanel: Comp = ({
   enableClose = false,
   title = '',
   onClose,
-  className = ''
+  className = '',
+  titleHeight = 22,
+  titleBarStyle = {
+    height: titleHeight
+  }
 }) => {
   const [isOpen, setOpen] = useState(true)
   const [lastHeight, setLastHeight] = useState(200)
   const [startH, setStartH] = useState(0)
   const ref = useRef<Rnd>(null)
+
+  const iconStyle = {
+    width: titleHeight,
+    height: titleHeight
+  }
 
   const triggerOpen = () => {
     setOpen((open) => !open)
@@ -80,7 +90,11 @@ const FloatPanel: Comp = ({
   }
 
   const OpenIcon = (
-    <div className='icon-button touchable' onClick={triggerOpen}>
+    <div
+      className='icon-button touchable'
+      onClick={triggerOpen}
+      style={iconStyle}
+    >
       <FontAwesomeIcon
         className='icon'
         icon={isOpen ? faMinusSquare : faPlusSquare}
@@ -89,7 +103,11 @@ const FloatPanel: Comp = ({
   )
 
   const CloseIcon = (
-    <div className='icon-button touchable' onClick={triggerClose}>
+    <div
+      className='icon-button touchable'
+      onClick={triggerClose}
+      style={iconStyle}
+    >
       <FontAwesomeIcon className='icon' icon={faTimes} />
     </div>
   )
@@ -133,8 +151,8 @@ const FloatPanel: Comp = ({
       disableDragging={disableDragging}
     >
       <div className='window-container'>
-        <div className='titlebar'>
-          <div className='icon-button'>
+        <div className='titlebar' style={titleBarStyle}>
+          <div className='icon-button' style={iconStyle}>
             <FontAwesomeIcon className='icon icon-menu' icon={faBars} />
           </div>
           <span className='title'>{title}</span>
