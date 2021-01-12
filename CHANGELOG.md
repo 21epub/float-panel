@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+# [0.2.0](https://github.com/21epub/float-panel/compare/v0.1.0...v0.2.0) (2021-01-12)
+
+### Features
+
+- float panel support auto height adapt to screen ([4934381](https://github.com/21epub/float-panel/commit/4934381))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
 # [0.1.0](https://github.com/21epub/float-panel/compare/v0.0.3...v0.1.0) (2020-11-29)
 
 ### Features
