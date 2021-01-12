@@ -1,6 +1,6 @@
 import styles from './styles.module.less'
 
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect, useCallback, useMemo } from 'react'
 import { Rnd } from 'react-rnd'
 import classNames from 'classnames'
 
@@ -18,8 +18,8 @@ const getHeight = (dom: HTMLElement) => dom.offsetHeight
 interface Pos {
   x: number
   y: number
-  width: number
-  height: number
+  width: number | string
+  height: number | string
 }
 
 const defPos: Pos = { x: 0, y: 0, width: 320, height: 200 }
@@ -57,16 +57,38 @@ const FloatPanel: Comp = ({
   }
 }) => {
   const [isOpen, setOpen] = useState(true)
+  const [maxHeight, setMaxHeight] = useState<number | string>('initial')
   const [lastHeight, setLastHeight] = useState(200)
   const [startH, setStartH] = useState(0)
   const ref = useRef<Rnd>(null)
 
-  const iconStyle = {
-    width: titleHeight,
-    height: titleHeight
-  }
+  const adjustHeight = useCallback(() => {
+    if (ref?.current) {
+      const _pos = ref?.current?.getSelfElement()?.getBoundingClientRect()
+      const windowHeight = document.documentElement.clientHeight
+      const top = _pos?.top || 0
 
-  const triggerOpen = () => {
+      // if (_pos && windowHeight - top <= _pos.height) {
+      setMaxHeight(windowHeight - top - titleHeight)
+      // } else {
+      //   setMaxHeight('initial')
+      // }
+    }
+  }, [])
+
+  useEffect(() => {
+    adjustHeight()
+  }, [])
+
+  const iconStyle = useMemo(
+    () => ({
+      width: titleHeight,
+      height: titleHeight
+    }),
+    [titleHeight]
+  )
+
+  const triggerOpen = useCallback(() => {
     setOpen((open) => !open)
 
     // * ----------------
@@ -83,33 +105,42 @@ const FloatPanel: Comp = ({
     }
 
     rnd.updateSize({ ...rnd.size, height: nextHeight })
-  }
+  }, [isOpen])
 
-  const triggerClose = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    onClose && onClose(e)
-  }
-
-  const OpenIcon = (
-    <div
-      className='icon-button touchable'
-      onClick={triggerOpen}
-      style={iconStyle}
-    >
-      <FontAwesomeIcon
-        className='icon'
-        icon={isOpen ? faMinusSquare : faPlusSquare}
-      />
-    </div>
+  const triggerClose = useCallback(
+    (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+      onClose && onClose(e)
+    },
+    [onClose]
   )
 
-  const CloseIcon = (
-    <div
-      className='icon-button touchable'
-      onClick={triggerClose}
-      style={iconStyle}
-    >
-      <FontAwesomeIcon className='icon' icon={faTimes} />
-    </div>
+  const OpenIcon = useMemo(
+    () => (
+      <div
+        className='icon-button touchable'
+        onClick={triggerOpen}
+        style={iconStyle}
+      >
+        <FontAwesomeIcon
+          className='icon'
+          icon={isOpen ? faMinusSquare : faPlusSquare}
+        />
+      </div>
+    ),
+    [triggerOpen, iconStyle]
+  )
+
+  const CloseIcon = useMemo(
+    () => (
+      <div
+        className='icon-button touchable'
+        onClick={triggerClose}
+        style={iconStyle}
+      >
+        <FontAwesomeIcon className='icon' icon={faTimes} />
+      </div>
+    ),
+    [triggerClose, iconStyle]
   )
 
   return (
@@ -149,6 +180,9 @@ const FloatPanel: Comp = ({
         }
       }}
       disableDragging={disableDragging}
+      onDragStop={() => {
+        adjustHeight()
+      }}
     >
       <div className='window-container'>
         <div className='titlebar' style={titleBarStyle}>
@@ -159,7 +193,10 @@ const FloatPanel: Comp = ({
           {enableClose ? CloseIcon : OpenIcon}
         </div>
         {children && (
-          <div className='content' style={isOpen ? {} : { height: 0 }}>
+          <div
+            className='content'
+            style={isOpen ? { maxHeight } : { height: 0 }}
+          >
             {children}
           </div>
         )}

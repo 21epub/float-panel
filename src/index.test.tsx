@@ -3,7 +3,7 @@ import FloatPanel from '.'
 import React from 'react'
 import { render } from '@testing-library/react'
 
-describe('ExampleComponent', () => {
+describe('FloatPanel Tests', () => {
   test('is truthy', () => {
     const wrapper = render(
       <FloatPanel pos={{ x: 0, y: 0, width: 200, height: 500 }} minWidth={80}>
