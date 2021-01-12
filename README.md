@@ -24,12 +24,24 @@ npm install --save @21epub/float-panel
 ```tsx
 import React, { Component } from 'react'
 
-import MyComponent from '@21epub/float-panel'
+import FloatPanel from '@21epub/float-panel'
 import '@21epub/float-panel/dist/index.css'
 
 class Example extends Component {
   render() {
-    return <MyComponent />
+    return <FloatPanel
+          pos = {x : 0, y: 0, width: 200, height: "auto" },
+          minWidth = {80},
+          disableDragging = false,
+          enableResizing = true,
+          enableClose = false,
+          title = 'Test',
+          className = 'TestPanel',
+          titleHeight = 22,
+          titleBarStyle = {
+            height: titleHeight
+          }
+          > This is the panel content </FloatPanel>
   }
 }
 ```
