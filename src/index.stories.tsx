@@ -40,6 +40,7 @@ Primary.args = {
   className: 'Demo',
   enableResizing: true,
   minWidth: 200,
+  maxWidth: 1000,
   pos: { x: 0, y: 0, width: 320, height: 200 },
   style: {
     pointerEvents: 'initial'

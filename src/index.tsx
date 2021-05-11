@@ -27,6 +27,7 @@ const defPos: Pos = { x: 0, y: 0, width: 320, height: 200 }
 export type CompProps = {
   pos?: Partial<Pos>
   minWidth?: number
+  maxWidth?: number
   children?: any
   style?: React.CSSProperties
   disableDragging?: boolean
@@ -43,6 +44,7 @@ export type Comp = React.FC<CompProps>
 const FloatPanel: Comp = ({
   pos = defPos,
   minWidth = 80,
+  maxWidth,
   children,
   style = {},
   disableDragging = false,
@@ -150,6 +152,7 @@ const FloatPanel: Comp = ({
       default={{ ...defPos, ...pos }}
       minHeight={titleHeight}
       minWidth={minWidth}
+      maxWidth={maxWidth}
       ref={ref}
       dragHandleClassName='titlebar'
       enableResizing={
