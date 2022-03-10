@@ -1,6 +1,12 @@
-# Change Log
+# Changelog
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+### [0.3.1](https://github.com/21epub/float-panel/compare/v0.3.0...v0.3.1) (2022-03-10)
+
+### Features
+
+- support Rnd options (opts) for float panel props ([0b556b4](https://github.com/21epub/float-panel/commit/0b556b4fdfa03569ba5868e3207a080ae50ffcc4))
 
 # [0.3.0](https://github.com/21epub/float-panel/compare/v0.2.0...v0.3.0) (2021-05-11)
 
