@@ -40,7 +40,10 @@ class Example extends Component {
           titleHeight = 22,
           titleBarStyle = {
             height: titleHeight
-          }
+          },
+          opts = {
+            bounds: "window"
+          }  // opts support Rnd opts ,such as  bounds , reference to : https://github.com/bokuweb/react-rnd
           > This is the panel content </FloatPanel>
   }
 }

@@ -75,7 +75,8 @@ AutoHeight.args = {
   children:
     'This is a autoheight panel , drag it down to see that this window content will auto scroll to fit',
   pos: { x: 0, y: 0, height: 'auto', width: 200 },
-  disableDragging: false
+  disableDragging: false,
+  opts: { bounds: 'window' }
 }
 
 export const Demo = (args: CompProps) => <FloatPanel {...args} />

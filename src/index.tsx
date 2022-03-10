@@ -38,6 +38,7 @@ export type CompProps = {
   className?: string
   titleBarStyle?: React.CSSProperties
   titleHeight?: number
+  opts?: React.ComponentProps<typeof Rnd>
 }
 export type Comp = React.FC<CompProps>
 
@@ -56,7 +57,8 @@ const FloatPanel: Comp = ({
   titleHeight = 22,
   titleBarStyle = {
     height: titleHeight
-  }
+  },
+  opts = {}
 }) => {
   const [isOpen, setOpen] = useState(true)
   const [maxHeight, setMaxHeight] = useState<number | string>('initial')
@@ -186,6 +188,7 @@ const FloatPanel: Comp = ({
       onDragStop={() => {
         adjustHeight()
       }}
+      {...opts}
     >
       <div className='window-container'>
         <div className='titlebar' style={titleBarStyle}>
